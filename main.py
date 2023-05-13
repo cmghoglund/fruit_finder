@@ -17,10 +17,17 @@ print("|X| |X| |X| |X| |X|")
 
 banana_location = random.randint(1, 5)
 
-guessed_location = input("\nSo... Which door is it?? Choose 1-5: ")
-guessed_location = int(guessed_location)
+keep_guessing = True
 
-if guessed_location == banana_location:
-    print("\nGood job! You found it so you can go bananas!")
-else:
-    print("\nOops, no banana. But hunger is a great motivator!")
+while keep_guessing:
+    guessed_location = input("\nSo... Which door is it?? Choose 1-5: ")
+    guessed_location = int(guessed_location)
+
+    if guessed_location == banana_location:
+        print("\nGood job! You found it so you can go bananas!")
+        keep_guessing = False
+    else:
+        print("\nOops, no banana. But hunger is a great motivator!")
+
+print("\nMany thanks for playing! It was lots of fun, wasn't it?!")
+print("Just don't tell anyone how many hours you wasted trying to find the banana...\n")
