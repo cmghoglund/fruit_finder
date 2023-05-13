@@ -7,6 +7,19 @@ def display_game_title(fruit):
     border = "■" * len(game_title)
     print("\n".join([border, game_title, border]))
 
+def display_game_instructions(player_name, fruit, number_of_doors):
+    instructions = [
+        f"\nI have both good and bad news for you, {player_name}.",
+        "The bad news is, you've just been transformed into an ape. (Yeah, I told you it was bad.)",
+        "The good news is, you now face a very important task:",
+        f"\n\tFIND A {fruit.upper()}!",
+        "\nAs you'll soon find out, this is not as simple as it sounds.",
+        f"You see, {player_name}, a delicious {fruit} has been cleverly hidden behind one of the following {number_of_doors} doors.",
+        "Your task is to guess behind which one.\n",
+        "Got it? Okay, here we go...\n",
+    ]
+    print("\n".join(instructions))
+
 fruit = "pineapple" # Can be changed according to the player's taste and mood
 number_of_doors = 5
 
@@ -20,14 +33,7 @@ print("\nWith this exciting game, you can now waste away hours of your life... H
 player_name = input("\nFirst things first... Please tell me your name: ").title()
 
 # Display game instructions
-print(f"\nI have both good and bad news for you, {player_name}.")
-print("The bad news is, you've just been transformed into an ape. (Yeah, I told you it was bad.)")
-print("The good news is, you now face a very important task:")
-print(f"\n\tFIND A {fruit.upper()}!")
-print("\nAs you'll soon find out, this is not as simple as it sounds.")
-print(f"You see, {player_name}, a delicious {fruit} has been cleverly hidden behind one of the following {number_of_doors} doors.")
-print("Your task is to guess behind which one.\n")
-print("Got it? Okay, here we go...\n")
+display_game_instructions(player_name, fruit, number_of_doors)
 
 print("|X| " * number_of_doors)
 
