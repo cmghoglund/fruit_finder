@@ -35,15 +35,17 @@ keep_guessing = True
 
 # Main game loop
 while keep_guessing:
-# TODO Validate input so that game doesn't crash if player enters non-digit character
-    guessed_location = input(f"\nSo... Which door is it?? Choose 1-{number_of_doors}: ")
-    guessed_location = int(guessed_location)
-
-    if guessed_location == fruit_location: # If player's guess is correct
-        print("\nGood job! You found it so you can go bananas!")
-        keep_guessing = False
-    else: # If player's guess is wrong
-        print(f"\nOops, no {fruit}. But hunger is a great motivator!")
+    try:
+        guessed_location = int(input(f"\nSo... Which door is it?? Choose 1-{number_of_doors}: "))
+        if guessed_location < 1 or guessed_location > number_of_doors:
+            raise ValueError
+        if guessed_location == fruit_location: # If player's guess is correct
+            print("\nGood job! You found it so you can go bananas!")
+            keep_guessing = False
+        else: # If player's guess is wrong
+            print(f"\nOops, no {fruit}. But hunger is a great motivator!")
+    except ValueError:
+        print(f"\nNice try, {player_name}! But you need to choose a number between 1 and {number_of_doors}.")
 
 # Display thank-you message
 print(f"\nMany thanks for playing, {player_name}! It was lots of fun, wasn't it?!")
