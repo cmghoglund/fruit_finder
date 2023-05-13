@@ -20,6 +20,10 @@ def display_game_instructions(player_name, fruit, number_of_doors):
     ]
     print("\n".join(instructions))
 
+def get_player_name():
+    player_name = input("\nFirst things first... Please tell me your name: ").title()
+    return player_name
+
 fruit = "pineapple" # Can be changed according to the player's taste and mood
 number_of_doors = 5
 
@@ -30,7 +34,7 @@ display_game_title(fruit)
 print("\nWith this exciting game, you can now waste away hours of your life... Have fun!!")
 
 # Get player name
-player_name = input("\nFirst things first... Please tell me your name: ").title()
+player_name = get_player_name()
 
 # Display game instructions
 display_game_instructions(player_name, fruit, number_of_doors)
