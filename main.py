@@ -1,3 +1,5 @@
+import random
+
 print("\nWelcome to the Banana Finder!")
 print("\nWith this exciting game, you can now waste away hours of your life... Have fun!!")
 
@@ -13,7 +15,7 @@ print("Got it? Okay, here we go...\n")
 
 print("|X| |X| |X| |X| |X|")
 
-banana_location = 1
+banana_location = random.randint(1, 5)
 
 guessed_location = input("\nSo... Which door is it?? Choose 1-5: ")
 guessed_location = int(guessed_location)
