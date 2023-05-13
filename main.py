@@ -31,17 +31,15 @@ print("|X| " * number_of_doors)
 
 fruit_location = random.randint(1, number_of_doors)
 
-keep_guessing = True
-
 # Main game loop
-while keep_guessing:
+while True:
     try:
         guessed_location = int(input(f"\nSo... Which door is it?? Choose 1-{number_of_doors}: "))
         if guessed_location < 1 or guessed_location > number_of_doors:
             raise ValueError
         if guessed_location == fruit_location: # If player's guess is correct
             print("\nGood job! You found it so you can go bananas!")
-            keep_guessing = False
+            break
         else: # If player's guess is wrong
             print(f"\nOops, no {fruit}. But hunger is a great motivator!")
     except ValueError:
