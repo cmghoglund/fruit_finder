@@ -2,15 +2,17 @@
 
 import random
 
+def display_game_title(fruit):
+    game_title = f"■ Welcome to the {fruit.title()} Finder! ■"
+    border = "■" * len(game_title)
+    print("\n".join([border, game_title, border]))
+
 fruit = "pineapple" # Can be changed according to the player's taste and mood
 number_of_doors = 5
 
 # Display game title and welcome message
 print()
-game_title = f"■ Welcome to the {fruit.title()} Finder! ■"
-print("■" * len(game_title))
-print(game_title)
-print("■" * len(game_title))
+display_game_title(fruit)
 
 print("\nWith this exciting game, you can now waste away hours of your life... Have fun!!")
 
