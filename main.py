@@ -1,5 +1,7 @@
 import random
 
+number_of_doors = 5
+
 print("\nWelcome to the Banana Finder!")
 print("\nWith this exciting game, you can now waste away hours of your life... Have fun!!")
 
@@ -13,9 +15,9 @@ print("You see, " + player_name + ", a delicious banana has been cleverly hidden
 print("Your task is to guess behind which one.\n")
 print("Got it? Okay, here we go...\n")
 
-print("|X| |X| |X| |X| |X|")
+print("|X| " * number_of_doors)
 
-banana_location = random.randint(1, 5)
+banana_location = random.randint(1, number_of_doors)
 
 keep_guessing = True
 
