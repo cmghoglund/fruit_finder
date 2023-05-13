@@ -16,3 +16,8 @@ print("|X| |X| |X| |X| |X|")
 banana_location = 1
 
 guessed_location = input("\nSo... Which door is it?? Choose 1-5: ")
+
+if guessed_location == banana_location:
+    print("\nGood job! You found it so you can go bananas!")
+else:
+    print("\nOops, no banana. But hunger is a great motivator!")
