@@ -53,10 +53,10 @@ def get_player_guess(player_name, number_of_doors):
             redraw_screen(player_name, fruit, number_of_doors)
 
 def evaluate_player_guess(fruit, guessed_location, fruit_location):
-    if guessed_location == fruit_location: # If player's guess is correct
+    if guessed_location == fruit_location:
         print(f"\nGood job! You found the {fruit} so you can go bananas!")
         return True
-    else: # If player's guess is wrong
+    else:
         print(f"\nOops, no {fruit}. But hunger is a great motivator!")
         return False
 
@@ -102,14 +102,6 @@ def play_game(fruit, number_of_doors):
             break
 
         redraw_screen(player_name, fruit, number_of_doors)
-
-        # input("\nPress Enter/Return to continue...")
-        # clear_screen()
-        # display_game_title(fruit)
-        # display_game_intro()
-        # display_game_instructions(player_name, fruit, number_of_doors)
-
-        # print("|X| " * number_of_doors)
 
     display_final_message(player_name, fruit)
 
