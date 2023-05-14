@@ -8,6 +8,7 @@ def get_random_fruit(fruits):
 def display_game_title(fruit):
     game_title = f"■ Welcome to the {fruit.title()} Finder! ■"
     border = "■" * len(game_title)
+    print()
     print("\n".join([border, game_title, border]))
 
 def display_game_instructions(player_name, fruit, number_of_doors):
@@ -34,40 +35,39 @@ def display_thank_you_message(player_name, fruit):
     ]
     print("\n".join(message))
 
-FRUITS = ("apple", "banana", "cantaloupe", "grapefruit", "kiwi", "lemon", "mango", "orange", "peach", "pear", "pineapple", "watermelon")
-fruit = get_random_fruit(FRUITS) # Randomly choose a fruit
+def play_game(fruit, number_of_doors):
+    display_game_title(fruit)
+    # TODO Break out the following print() statement into its own function 'display_game_intro'
+    print("\nWith this exciting game, you can now waste away hours of your life... Have fun!!")
 
-number_of_doors = 5
+    player_name = get_player_name()
 
-# Display game title and welcome message
-print()
-display_game_title(fruit)
+    display_game_instructions(player_name, fruit, number_of_doors)
 
-print("\nWith this exciting game, you can now waste away hours of your life... Have fun!!")
+    print("|X| " * number_of_doors)
 
-# Get player name
-player_name = get_player_name()
+    fruit_location = random.randint(1, number_of_doors)
 
-# Display game instructions
-display_game_instructions(player_name, fruit, number_of_doors)
+    # Main game loop
+    while True:
+        try:
+            guessed_location = int(input(f"\nSo... Which door is it?? Choose 1-{number_of_doors}: "))
+            if guessed_location < 1 or guessed_location > number_of_doors:
+                raise ValueError
+            if guessed_location == fruit_location: # If player's guess is correct
+                print("\nGood job! You found it so you can go bananas!")
+                break
+            else: # If player's guess is wrong
+                print(f"\nOops, no {fruit}. But hunger is a great motivator!")
+        except ValueError:
+            print(f"\nNice try, {player_name}! But you need to choose a number between 1 and {number_of_doors}.")
 
-print("|X| " * number_of_doors)
+    display_thank_you_message(player_name, fruit)
 
-fruit_location = random.randint(1, number_of_doors)
+if __name__ == '__main__':
+    FRUITS = ("apple", "banana", "cantaloupe", "grapefruit", "kiwi", "lemon", "mango", "orange", "peach", "pear", "pineapple", "watermelon")
+    fruit = get_random_fruit(FRUITS)
 
-# Main game loop
-while True:
-    try:
-        guessed_location = int(input(f"\nSo... Which door is it?? Choose 1-{number_of_doors}: "))
-        if guessed_location < 1 or guessed_location > number_of_doors:
-            raise ValueError
-        if guessed_location == fruit_location: # If player's guess is correct
-            print("\nGood job! You found it so you can go bananas!")
-            break
-        else: # If player's guess is wrong
-            print(f"\nOops, no {fruit}. But hunger is a great motivator!")
-    except ValueError:
-        print(f"\nNice try, {player_name}! But you need to choose a number between 1 and {number_of_doors}.")
+    number_of_doors = 5
 
-# Display thank-you message
-display_thank_you_message(player_name, fruit)
+    play_game(fruit, number_of_doors)
