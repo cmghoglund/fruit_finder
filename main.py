@@ -2,6 +2,9 @@
 
 import random
 
+def get_random_fruit(fruits):
+    return random.choice(fruits)
+
 def display_game_title(fruit):
     game_title = f"■ Welcome to the {fruit.title()} Finder! ■"
     border = "■" * len(game_title)
@@ -31,7 +34,9 @@ def display_thank_you_message(player_name, fruit):
     ]
     print("\n".join(message))
 
-fruit = "pineapple" # Can be changed according to the player's taste and mood
+FRUITS = ("apple", "banana", "cantaloupe", "grapefruit", "kiwi", "lemon", "mango", "orange", "peach", "pear", "pineapple", "watermelon")
+fruit = get_random_fruit(FRUITS) # Randomly choose a fruit
+
 number_of_doors = 5
 
 # Display game title and welcome message
