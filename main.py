@@ -24,6 +24,13 @@ def get_player_name():
     player_name = input("\nFirst things first... Please tell me your name: ").title()
     return player_name
 
+def display_thank_you_message(player_name, fruit):
+    message = [
+        f"\nMany thanks for playing, {player_name}! It was lots of fun, wasn't it?!",
+        f"Just don't tell anyone how many hours you wasted trying to find the {fruit}...\n",
+    ]
+    print("\n".join(message))
+
 fruit = "pineapple" # Can be changed according to the player's taste and mood
 number_of_doors = 5
 
@@ -58,5 +65,4 @@ while True:
         print(f"\nNice try, {player_name}! But you need to choose a number between 1 and {number_of_doors}.")
 
 # Display thank-you message
-print(f"\nMany thanks for playing, {player_name}! It was lots of fun, wasn't it?!")
-print(f"Just don't tell anyone how many hours you wasted trying to find the {fruit}...\n")
+display_thank_you_message(player_name, fruit)
