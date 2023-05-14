@@ -1,6 +1,10 @@
 # Simple guessing game to showcase basic programming concepts and logic
 
+import os
 import random
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def get_random_fruit(fruits):
     return random.choice(fruits)
@@ -8,7 +12,6 @@ def get_random_fruit(fruits):
 def display_game_title(fruit):
     game_title = f"■ Welcome to the {fruit.title()} Finder! ■"
     border = "■" * len(game_title)
-    print()
     print("\n".join([border, game_title, border]))
 
 def display_game_intro():
@@ -34,10 +37,10 @@ def get_player_name():
     player_name = input("\nFirst things first... Please tell me your name: ").title()
     return player_name
 
-def display_thank_you_message(player_name, fruit):
+def display_final_message(player_name, fruit):
     message = [
-        f"\nMany thanks for playing, {player_name}! It was lots of fun, wasn't it?!",
-        f"Just don't tell anyone how many hours you wasted trying to find the {fruit}...\n",
+        f"\nThat was a lot of fun, wasn't it, {player_name}?!",
+        f"Just don't tell anyone how much time you wasted trying to find the {fruit}...\n",
     ]
     print("\n".join(message))
 
@@ -60,6 +63,7 @@ def evaluate_player_guess(guessed_location, fruit_location, fruit):
         return False
 
 def play_game(fruit, number_of_doors):
+    clear_screen()
     display_game_title(fruit)
     display_game_intro()    
     player_name = get_player_name()
@@ -74,7 +78,22 @@ def play_game(fruit, number_of_doors):
         if evaluate_player_guess(guessed_location, fruit_location, fruit):
             break
 
-    display_thank_you_message(player_name, fruit)
+        input("\nPress Enter/Return to continue...")
+        clear_screen()
+        display_game_title(fruit)
+        display_game_intro()    
+        display_game_instructions(player_name, fruit, number_of_doors)
+
+        print("|X| " * number_of_doors)
+
+    display_final_message(player_name, fruit)
+
+    continue_playing = input("Do you want to continue playing? (y/n) ").lower()
+    if continue_playing == 'y':
+        fruit = get_random_fruit(FRUITS)
+        play_game(fruit, number_of_doors)
+    else:
+        print("\nThat's too bad, but thanks for playing! Bye!!\n")
 
 if __name__ == '__main__':
 
