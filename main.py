@@ -63,12 +63,17 @@ def evaluate_player_guess(fruit, guessed_location, fruit_location):
         return False
 
 def continue_playing(fruit, number_of_doors):
-    answer = input("Do you want to continue playing? (y/n) ").lower()
-    if answer == 'y':
-        fruit = get_random_fruit(FRUITS)
-        play_game(fruit, number_of_doors)
-    else:
-        print("\nThat's too bad, but thanks for playing! Bye!!\n")
+    while True:
+        answer = input("Do you want to continue playing? (y/n) ").lower()
+        if answer == 'y':
+            fruit = get_random_fruit(FRUITS)
+            play_game(fruit, number_of_doors)
+            break
+        elif answer == 'n':
+            print("\nThat's too bad, but thanks for playing! Bye!!\n")
+            break
+        else:
+            print("\nNope! Gotta choose either 'y' or 'n'.")
 
 def play_game(fruit, number_of_doors):
     clear_screen()
