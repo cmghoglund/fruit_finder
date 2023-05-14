@@ -11,6 +11,12 @@ def display_game_title(fruit):
     print()
     print("\n".join([border, game_title, border]))
 
+def display_game_intro():
+    intro = [
+        "\nWith this exciting game, you can now waste away hours of your life... Have fun!!",
+    ]
+    print("\n".join(intro))
+
 def display_game_instructions(player_name, fruit, number_of_doors):
     instructions = [
         f"\nI have both good and bad news for you, {player_name}.",
@@ -37,15 +43,11 @@ def display_thank_you_message(player_name, fruit):
 
 def play_game(fruit, number_of_doors):
     display_game_title(fruit)
-    # TODO Break out the following print() statement into its own function 'display_game_intro'
-    print("\nWith this exciting game, you can now waste away hours of your life... Have fun!!")
-
+    display_game_intro()    
     player_name = get_player_name()
-
     display_game_instructions(player_name, fruit, number_of_doors)
 
     print("|X| " * number_of_doors)
-
     fruit_location = random.randint(1, number_of_doors)
 
     # Main game loop
