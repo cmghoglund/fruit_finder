@@ -44,7 +44,7 @@ def display_final_message(player_name, fruit):
 def get_player_guess(player_name, number_of_doors):
     while True:
         try:
-            guessed_location = int(input(f"\nSo... Which door is it?? Choose 1-{number_of_doors}: "))
+            guessed_location = int(input(f"So... Which door is it?? Choose 1-{number_of_doors}: "))
             if guessed_location < 1 or guessed_location > number_of_doors:
                 raise ValueError
             return guessed_location
@@ -83,7 +83,7 @@ def redraw_screen(player_name, fruit, number_of_doors):
     display_game_title(fruit)
     display_game_intro()
     display_game_instructions(player_name, fruit, number_of_doors)
-    print("|X| " * number_of_doors)
+    print("|X| " * number_of_doors + "\n")
 
 def play_game(fruit, number_of_doors):
     clear_screen()
@@ -91,8 +91,8 @@ def play_game(fruit, number_of_doors):
     display_game_intro()
     player_name = get_player_name()
     display_game_instructions(player_name, fruit, number_of_doors)
+    print("|X| " * number_of_doors + "\n")
 
-    print("|X| " * number_of_doors)
     fruit_location = random.randint(1, number_of_doors)
 
     # Main game loop
