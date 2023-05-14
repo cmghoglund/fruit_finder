@@ -3,9 +3,6 @@
 import os
 import random
 
-def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
-
 def get_random_fruit(fruits):
     return random.choice(fruits)
 
@@ -53,6 +50,7 @@ def get_player_guess(player_name, number_of_doors):
             return guessed_location
         except ValueError:
             print(f"\nNice try, {player_name}! But you need to choose a number between 1 and {number_of_doors}.")
+            redraw_screen(player_name, fruit, number_of_doors)
 
 def evaluate_player_guess(fruit, guessed_location, fruit_location):
     if guessed_location == fruit_location: # If player's guess is correct
@@ -62,7 +60,7 @@ def evaluate_player_guess(fruit, guessed_location, fruit_location):
         print(f"\nOops, no {fruit}. But hunger is a great motivator!")
         return False
 
-def continue_playing(fruit, number_of_doors):
+def continue_playing(player_name, fruit, number_of_doors):
     while True:
         answer = input("Do you want to continue playing? (y/n) ").lower()
         if answer == 'y':
@@ -74,11 +72,23 @@ def continue_playing(fruit, number_of_doors):
             break
         else:
             print("\nNope! Gotta choose either 'y' or 'n'.")
+            redraw_screen(player_name, fruit, number_of_doors)
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def redraw_screen(player_name, fruit, number_of_doors):
+    input("\nPress Enter/Return to continue...")
+    clear_screen()
+    display_game_title(fruit)
+    display_game_intro()
+    display_game_instructions(player_name, fruit, number_of_doors)
+    print("|X| " * number_of_doors)
 
 def play_game(fruit, number_of_doors):
     clear_screen()
     display_game_title(fruit)
-    display_game_intro()    
+    display_game_intro()
     player_name = get_player_name()
     display_game_instructions(player_name, fruit, number_of_doors)
 
@@ -91,17 +101,19 @@ def play_game(fruit, number_of_doors):
         if evaluate_player_guess(fruit, guessed_location, fruit_location):
             break
 
-        input("\nPress Enter/Return to continue...")
-        clear_screen()
-        display_game_title(fruit)
-        display_game_intro()    
-        display_game_instructions(player_name, fruit, number_of_doors)
+        redraw_screen(player_name, fruit, number_of_doors)
 
-        print("|X| " * number_of_doors)
+        # input("\nPress Enter/Return to continue...")
+        # clear_screen()
+        # display_game_title(fruit)
+        # display_game_intro()
+        # display_game_instructions(player_name, fruit, number_of_doors)
+
+        # print("|X| " * number_of_doors)
 
     display_final_message(player_name, fruit)
 
-    continue_playing(fruit, number_of_doors)
+    continue_playing(player_name, fruit, number_of_doors)
 
 if __name__ == '__main__':
 
