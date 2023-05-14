@@ -51,6 +51,14 @@ def get_player_guess(player_name, number_of_doors):
         except ValueError:
             print(f"\nNice try, {player_name}! But you need to choose a number between 1 and {number_of_doors}.")
 
+def evaluate_player_guess(guessed_location, fruit_location, fruit):
+    if guessed_location == fruit_location: # If player's guess is correct
+        print("\nGood job! You found it so you can go bananas!")
+        return True
+    else: # If player's guess is wrong
+        print(f"\nOops, no {fruit}. But hunger is a great motivator!")
+        return False
+
 def play_game(fruit, number_of_doors):
     display_game_title(fruit)
     display_game_intro()    
@@ -63,11 +71,8 @@ def play_game(fruit, number_of_doors):
     # Main game loop
     while True:
         guessed_location = get_player_guess(player_name, number_of_doors)
-        if guessed_location == fruit_location: # If player's guess is correct
-            print("\nGood job! You found it so you can go bananas!")
+        if evaluate_player_guess(guessed_location, fruit_location, fruit):
             break
-        else: # If player's guess is wrong
-            print(f"\nOops, no {fruit}. But hunger is a great motivator!")
 
     display_thank_you_message(player_name, fruit)
 
