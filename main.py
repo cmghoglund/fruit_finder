@@ -41,6 +41,16 @@ def display_thank_you_message(player_name, fruit):
     ]
     print("\n".join(message))
 
+def get_player_guess(player_name, number_of_doors):
+    while True:
+        try:
+            guessed_location = int(input(f"\nSo... Which door is it?? Choose 1-{number_of_doors}: "))
+            if guessed_location < 1 or guessed_location > number_of_doors:
+                raise ValueError
+            return guessed_location
+        except ValueError:
+            print(f"\nNice try, {player_name}! But you need to choose a number between 1 and {number_of_doors}.")
+
 def play_game(fruit, number_of_doors):
     display_game_title(fruit)
     display_game_intro()    
@@ -52,22 +62,32 @@ def play_game(fruit, number_of_doors):
 
     # Main game loop
     while True:
-        try:
-            guessed_location = int(input(f"\nSo... Which door is it?? Choose 1-{number_of_doors}: "))
-            if guessed_location < 1 or guessed_location > number_of_doors:
-                raise ValueError
-            if guessed_location == fruit_location: # If player's guess is correct
-                print("\nGood job! You found it so you can go bananas!")
-                break
-            else: # If player's guess is wrong
-                print(f"\nOops, no {fruit}. But hunger is a great motivator!")
-        except ValueError:
-            print(f"\nNice try, {player_name}! But you need to choose a number between 1 and {number_of_doors}.")
+        guessed_location = get_player_guess(player_name, number_of_doors)
+        if guessed_location == fruit_location: # If player's guess is correct
+            print("\nGood job! You found it so you can go bananas!")
+            break
+        else: # If player's guess is wrong
+            print(f"\nOops, no {fruit}. But hunger is a great motivator!")
 
     display_thank_you_message(player_name, fruit)
 
 if __name__ == '__main__':
-    FRUITS = ("apple", "banana", "cantaloupe", "grapefruit", "kiwi", "lemon", "mango", "orange", "peach", "pear", "pineapple", "watermelon")
+
+    FRUITS = (
+        "apple",
+        "banana",
+        "cantaloupe",
+        "grapefruit",
+        "kiwi",
+        "lemon",
+        "mango",
+        "orange",
+        "peach",
+        "pear",
+        "pineapple",
+        "watermelon",
+    )
+
     fruit = get_random_fruit(FRUITS)
 
     number_of_doors = 5
